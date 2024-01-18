@@ -50,10 +50,12 @@ body {
   height: auto;
   z-index: 1;
   align-items: center;
+  margin-left: 10px;
 }
 
 .hamster-caption{
   margin-top: 10px;
+  margin-right: 20px;
   font-style: italic;
   text-align: center;
   color: #FF7C36;
@@ -77,6 +79,7 @@ body {
   margin: 0 auto;
   max-width: 100%;
   height: auto;
+  width: auto;
 }
 
 .image-caption {
@@ -94,10 +97,14 @@ body {
 .section-title {
   color: #FF7C36;
   font-family: "young_serif";
+  font-size: x-large;
+  padding-bottom: 20px;
 }
 
 .content-paragraph {
   line-height: 1.5;
+  padding-bottom: 5px;
+  padding-top: 5px;
 }
 
 .breed-details {
@@ -105,6 +112,7 @@ body {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .enclosure-details {
@@ -112,6 +120,7 @@ body {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .diet-details {
@@ -119,6 +128,7 @@ body {
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 10px;
 }
 
 .content-list,
@@ -126,6 +136,7 @@ body {
   list-style-type: none;
   margin-left: 0;
   padding-left: 20px;
+  padding-top: 5px;
 }
 
 .content-list li {
