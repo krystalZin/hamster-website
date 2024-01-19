@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
+import Chat from "../chat";
 
-export default function Home() {
+export default function Home({isChatting, setIsChatting}) {
   return (
     <main className="main">
       <header>
@@ -541,6 +542,19 @@ export default function Home() {
           </section>
         </main>
       </div>
+
+      {!isChatting && <button onClick={() => {setIsChatting(!isChatting)}}>
+        <Image 
+          src="/images/chat.png"
+          alt="Chat Logo"
+          width={50}
+          height={50}
+          className="chat"
+          priority={true}
+        />
+      </button>}
+
+      {isChatting && <Chat isChatting={isChatting} setIsChatting={setIsChatting}/>}
 
       <footer className="footer">
         <p className="footer-text">Research before buying a pet</p>

@@ -82,6 +82,16 @@ body {
   width: auto;
 }
 
+.chat {
+  position: fixed;
+  height: auto;
+  width: 80px;
+  bottom: 0;
+  right: 0;
+  padding-bottom: 80px;
+  padding-right: 30px;
+}
+
 .image-caption {
   visibility: hidden;
   margin-top: 10px;
