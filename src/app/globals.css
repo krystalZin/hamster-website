@@ -88,8 +88,17 @@ body {
   width: 80px;
   bottom: 0;
   right: 0;
-  padding-bottom: 80px;
+  padding-bottom: 50px;
   padding-right: 30px;
+}
+
+.chatBox {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  max-width: 90vw;
+  overflow-y: scroll;
 }
 
 .image-caption {

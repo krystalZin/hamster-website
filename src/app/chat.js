@@ -1,6 +1,8 @@
 "use client"
 import { useCompletion } from 'ai/react';
 import { MdOutlineClose } from "react-icons/md";
+import { IoSend } from "react-icons/io5";
+import { FaStop } from "react-icons/fa";
 
 export default function Chat({isChatting, setIsChatting}) {
     const {
@@ -15,23 +17,23 @@ export default function Chat({isChatting, setIsChatting}) {
       });
 
     return (
-        <div className="mx-auto w-full max-w-md py-24 flex flex-col stretch">
-            <output>{completion}</output>
+        <div className="chatBox mx-auto w-full max-w-md py-4 flex flex-col stretch lg:w-1/3">
             <MdOutlineClose onClick={() => {setIsChatting(!isChatting)}} />
+            <output>{completion}</output>
             <form onSubmit={handleSubmit} className="flex items-center gap-3 mb-8">
                 <label className="grow">
                     <input
                         className="w-full max-w-md bottom-0 border border-gray-300 rounded shadow-xl p-2"
                         value={input}
                         onChange={handleInputChange}
-                        placeholder="Ask anything..."
+                        placeholder="Write a message..."
                     />
                 </label>
                 <button type="button" onClick={stop}>
-                    Stop
+                    <FaStop />
                 </button>
                 <button disabled={isLoading} type="submit">
-                    Send
+                    <IoSend />
                 </button>
             </form>
         </div>
