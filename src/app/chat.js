@@ -3,6 +3,7 @@ import { useCompletion } from 'ai/react';
 import { MdOutlineClose } from "react-icons/md";
 import { IoSend } from "react-icons/io5";
 import { FaStop } from "react-icons/fa";
+import Image from 'next/image';
 
 export default function Chat({isChatting, setIsChatting}) {
     const {
@@ -18,7 +19,23 @@ export default function Chat({isChatting, setIsChatting}) {
 
     return (
         <div className="chatBox mx-auto w-full max-w-md py-4 px-4 flex flex-col stretch lg:w-1/3 rounded h-full">
-            <MdOutlineClose onClick={() => {setIsChatting(!isChatting)}} />
+            <MdOutlineClose className='text-2xl cursor-pointer ml-auto' onClick={() => {setIsChatting(!isChatting)}} />
+            <div className="chatImage">
+                {isChatting && (
+                    <>
+                        <Image
+                            src="/images/fig.png"
+                            alt="Hamster Logo"
+                            width={50}
+                            height={50}
+                            className="w-15 h-auto" 
+                            priority={true}
+                        />
+                        <p className='text'>Ask me anything about hamster care!</p>
+                    </>
+                )}
+            </div>
+
             <output className='Output grow'>{completion}</output>
             <form onSubmit={handleSubmit} className="flex items-center gap-3 mb-8">
                 <label className="grow">

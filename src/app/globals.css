@@ -85,7 +85,7 @@ body {
 .chat {
   position: fixed;
   height: auto;
-  width: 80px;
+  width: 90px;
   bottom: 0;
   right: 0;
   padding-bottom: 50px;
@@ -96,8 +96,36 @@ body {
   position: fixed;
   bottom: 0;
   right: 0;
-  background-color: white;
+  background-color: #fff6e7;
   max-width: 90vw;
+  padding: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px; 
+  transition: all 0.3s ease; 
+}
+
+.chatBox:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+
+
+.chatImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.text {
+  border: 2px solid #4CAF50; 
+  border-radius: 20px;
+  padding: 10px;
+  margin-left: 15px;
+  font-family: 'Arial', sans-serif; 
+  font-size: 16px;
+  color: #333; 
+  background-color: #E9F5E6; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
 }
 
 .Output {

@@ -549,7 +549,7 @@ export default function Home({isChatting, setIsChatting}) {
           alt="Chat Logo"
           width={50}
           height={50}
-          className="chat"
+          className="chat "
           priority={true}
         />
       </button>}
