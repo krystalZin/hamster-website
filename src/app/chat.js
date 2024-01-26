@@ -17,22 +17,22 @@ export default function Chat({isChatting, setIsChatting}) {
       });
 
     return (
-        <div className="chatBox mx-auto w-full max-w-md py-4 flex flex-col stretch lg:w-1/3">
+        <div className="chatBox mx-auto w-full max-w-md py-4 px-4 flex flex-col stretch lg:w-1/3 rounded h-full">
             <MdOutlineClose onClick={() => {setIsChatting(!isChatting)}} />
-            <output>{completion}</output>
+            <output className='Output grow'>{completion}</output>
             <form onSubmit={handleSubmit} className="flex items-center gap-3 mb-8">
                 <label className="grow">
                     <input
-                        className="w-full max-w-md bottom-0 border border-gray-300 rounded shadow-xl p-2"
+                        className="messageBox w-full max-w-md bottom-0 border border-gray-300 rounded shadow-xl p-2"
                         value={input}
                         onChange={handleInputChange}
                         placeholder="Write a message..."
                     />
                 </label>
-                <button type="button" onClick={stop}>
+                <button className="Stop" type="button" onClick={stop}>
                     <FaStop />
                 </button>
-                <button disabled={isLoading} type="submit">
+                <button className="Send" disabled={isLoading} type="submit">
                     <IoSend />
                 </button>
             </form>

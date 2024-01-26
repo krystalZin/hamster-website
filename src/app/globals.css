@@ -98,7 +98,10 @@ body {
   right: 0;
   background-color: white;
   max-width: 90vw;
-  overflow-y: scroll;
+}
+
+.Output {
+  overflow-y: auto;
 }
 
 .image-caption {
