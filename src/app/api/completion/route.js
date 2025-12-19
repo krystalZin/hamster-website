@@ -16,7 +16,7 @@ export async function POST(req) {
     },
     body: JSON.stringify({
       model: 'openai/gpt-oss-20b',
-      input: `Respond in plain text only, not markdown and do not put any formatting to the following user prompt:\n\n${prompt}`,
+      input: `You are an expert in hamster care. Respond in Markdown to the following user prompt:\n\n${prompt}`,
       stream: true,
       temperature: 1,
     }),
