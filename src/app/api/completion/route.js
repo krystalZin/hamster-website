@@ -10,7 +10,7 @@ export async function POST(req) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.COHERE_API_KEY}`
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`
     },
     body: JSON.stringify({
       model: 'openai/gpt-oss-20b', // or: 'llama-3.1-8b-instant'
