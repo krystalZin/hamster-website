@@ -6,7 +6,7 @@ export const runtime = 'edge'
 export async function POST(req) {
   const { prompt } = await req.json()
 
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+  const response = await fetch('https://api.groq.com/openai/v1/responses', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
