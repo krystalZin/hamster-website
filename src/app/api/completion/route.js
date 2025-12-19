@@ -1,34 +1,25 @@
-import { StreamingTextResponse, CohereStream } from 'ai'
+import { StreamingTextResponse, OpenAIStream } from 'ai'
 
 // IMPORTANT! Set the runtime to edge
 export const runtime = 'edge'
 
 export async function POST(req) {
-    // Extract the `prompt` from the body of the request
-    const { prompt } = await req.json()
+  const { prompt } = await req.json()
 
-    const body = JSON.stringify({
-        prompt,
-        model: 'command-nightly',
-        max_tokens: 300,
-        stop_sequences: [],
-        temperature: 0.9,
-        return_likelihoods: 'NONE',
-        stream: true
+  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: 'openai/gpt-oss-20b', // or: 'llama-3.1-8b-instant'
+      messages: [{ role: 'user', content: prompt }],
+      temperature: 0.9,
+      stream: true
     })
+  })
 
-    const response = await fetch('https://api.cohere.ai/v1/generate', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${process.env.COHERE_API_KEY}`
-        },
-        body
-    })
-
-    // Extract the text response from the Cohere stream
-    const stream = CohereStream(response)
-
-    // Respond with the stream
-    return new StreamingTextResponse(stream)
+  const stream = OpenAIStream(response)
+  return new StreamingTextResponse(stream)
 }
