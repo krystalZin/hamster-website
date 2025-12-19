@@ -1,24 +1,29 @@
 import { StreamingTextResponse, OpenAIStream } from 'ai'
 
-// IMPORTANT! Set the runtime to edge
+// IMPORTANT! Edge runtime
 export const runtime = 'edge'
 
-export async function POST(req) {
+export async function POST(req: Request) {
   const { prompt } = await req.json()
 
   const response = await fetch('https://api.groq.com/openai/v1/responses', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.GROQ_API_KEY}`
+      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
     },
     body: JSON.stringify({
-      model: 'openai/gpt-oss-20b', // or: 'llama-3.1-8b-instant'
-      messages: [{ role: 'user', content: prompt }],
+      model: 'openai/gpt-oss-20b',
+      input: prompt,      
       temperature: 0.9,
-      stream: true
-    })
+      stream: true,
+    }),
   })
+
+  if (!response.ok) {
+    const errorText = await response.text()
+    return new Response(errorText, { status: response.status })
+  }
 
   const stream = OpenAIStream(response)
   return new StreamingTextResponse(stream)
