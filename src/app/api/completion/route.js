@@ -1,30 +1,38 @@
-import { StreamingTextResponse, OpenAIStream } from 'ai'
-
-// IMPORTANT! Edge runtime
 export const runtime = 'edge'
 
 export async function POST(req: Request) {
   const { prompt } = await req.json()
 
-  const response = await fetch('https://api.groq.com/openai/v1/responses', {
+  const apiKey = process.env.GROQ_API_KEY
+  if (!apiKey) {
+    return new Response('Missing GROQ_API_KEY', { status: 500 })
+  }
+
+  const upstream = await fetch('https://api.groq.com/openai/v1/responses', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+      Authorization: `Bearer ${apiKey}`,
     },
     body: JSON.stringify({
       model: 'openai/gpt-oss-20b',
-      input: prompt,      
-      temperature: 0.9,
+      input: prompt,
       stream: true,
+      temperature: 0.9,
     }),
   })
 
-  if (!response.ok) {
-    const errorText = await response.text()
-    return new Response(errorText, { status: response.status })
+  if (!upstream.ok) {
+    const text = await upstream.text()
+    return new Response(text, { status: upstream.status })
   }
 
-  const stream = OpenAIStream(response)
-  return new StreamingTextResponse(stream)
+  return new Response(upstream.body, {
+    status: 200,
+    headers: {
+      'Content-Type': upstream.headers.get('content-type') ?? 'text/event-stream',
+      'Cache-Control': 'no-cache, no-transform',
+      Connection: 'keep-alive',
+    },
+  })
 }
